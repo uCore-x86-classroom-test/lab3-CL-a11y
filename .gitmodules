@@ -1,3 +1,9 @@
-[submodule "ucore-x86"]
+[submodule "ucore-x86-lab1"]
 	path = ucore-x86
-	branch = main
+	url = https://github.com/CL-a11y/ucore-x86.git
+	branch = lab1
+
+[submodule "ucore-x86-lab2"]
+	path = ucore-x86-lab2
+	url = https://github.com/CL-a11y/ucore-x86.git
+	branch = lab2

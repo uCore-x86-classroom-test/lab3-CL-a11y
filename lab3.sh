@@ -1,5 +1,5 @@
 #!/bin/sh
-git submodule update --update
+git submodule update
 cd ucore-x86 && git checkout lab3
 timeout 30 make lab3
 status=$?

@@ -1,0 +1,38 @@
+name: GitHub Classroom Workflow
+
+on: [push]
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  build:
+    name: Autograding
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache QEMU
+        uses: actions/cache@v3
+        with:
+          path: qemu-7.0.0
+          key: qemu-7.0.0-x86_64-riscv64
+      - name: Install QEMU
+        run: |
+          sudo apt-get update
+          sudo apt-get install ninja-build -y
+          if [ ! -d qemu-7.0.0 ]; then
+            wget https://download.qemu.org/qemu-7.0.0.tar.xz
+            tar -xf qemu-7.0.0.tar.xz
+            cd qemu-7.0.0
+            ./configure --target-list=i386-softmmu
+            make -j
+          else
+            cd qemu-7.0.0
+          fi
+          sudo make install
+          sudo apt update
+          sudo apt install -y gcc-4.8
+          qemu-system-i386 --version
+      - uses: education/autograding@v1

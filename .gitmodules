@@ -1,4 +1,3 @@
 [submodule "ucore-x86"]
 	path = ucore-x86
-	url = https://github.com/CL-a11y/ucore-x86.git
 	branch = main
